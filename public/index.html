@@ -47,6 +47,20 @@ async function loadCities() {
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  const fileInput = form.querySelector('input[name="image"]');
+  const file = fileInput.files[0];
+  const MAX_SIZE = 5 * 1024 * 1024; // 5MB
+
+  if (!file) {
+    alert("Debes seleccionar una imagen");
+    return;
+  }
+   if (file.size > MAX_SIZE) {
+    alert("La imagen no puede superar los 5MB");
+    return;
+  }
+
+
   const data = new FormData(form);
 
   await fetch("/api/images", {
