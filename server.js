@@ -25,7 +25,7 @@ const citiesRoutes = require("./routes/cities");
 app.use("/api/cities", citiesRoutes);
 
 // iniciar servidor
-sequelize.sync({force:false , alter:true}).then(() => {
+sequelize.sync().then(() => {
   app.listen(process.env.PORT, () => {
     console.log("Servidor corriendo en puerto " + process.env.PORT);
   });
